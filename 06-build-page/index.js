@@ -10,6 +10,7 @@ function callback(err) {
 
 //create project-dist
 fs.mkdir(path.join(__dirname, 'project-dist'), {recursive: true}, callback);
+fs.appendFile(path.join(__dirname, 'project-dist/index.html'),'',callback);
 
 //create style.css
 fs.readdir(path.join(__dirname, 'styles'), (err, files) => {
@@ -29,7 +30,8 @@ fs.readdir(path.join(__dirname, 'assets'), (err, files) => {
     fs.mkdir(path.join(__dirname, `project-dist/assets/${elDir}`), {recursive: true}, callback);
     fs.readdir(path.join(__dirname, `assets/${elDir}`), (err, files) => {
       files.forEach(elFile => {
-        fs.copyFile(path.join(__dirname, `assets/${elDir}`, elFile), path.join(__dirname, `project-dist/assets/${elDir}`, elFile), callback);
+        fs.appendFile(path.join(__dirname, `project-dist/assets/${elDir}/${elFile}`),'',(err) => {if (err) throw err;});
+        fs.copyFile(path.join(__dirname, `assets/${elDir}`, `${elFile}`), path.join(__dirname, `project-dist/assets/${elDir}`, `${elFile}`), callback);
       });
     });
   });
