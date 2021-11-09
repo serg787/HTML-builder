@@ -7,7 +7,7 @@ fs.readdir(secretFolder, {withFileTypes: true}, (err, files) => {
     if (file.isFile()) {
       fs.stat(path.join(secretFolder, file.name), (err, stats) => {
         if (stats) {
-          console.log(`${path.parse(file.name).name} - ${path.extname(file.name).slice(1)} - ${Math.ceil(stats.size / 1024)}kb`);
+          console.log(`${path.parse(file.name).name} - ${path.extname(file.name).slice(1)} - ${(stats.size / 1024)}kb`);
         } else console.log('Файл не найден');
       });
     }
