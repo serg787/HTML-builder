@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const output = fs.createWriteStream(path.join(__dirname, 'project-dist/style.css'));
 let data = '';
 
 
@@ -10,6 +9,7 @@ function callback(err) {
 
 //create project-dist
 fs.mkdir(path.join(__dirname, 'project-dist'), {recursive: true}, callback);
+const output = fs.createWriteStream(path.join(__dirname, 'project-dist/style.css'));
 fs.appendFile(path.join(__dirname, 'project-dist/index.html'),'',callback);
 
 //create style.css
